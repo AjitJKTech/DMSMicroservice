@@ -1,0 +1,6 @@
+@DMSMicroservice.ApiGateway_HostAddress = http://localhost:5079
+
+GET {{DMSMicroservice.ApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

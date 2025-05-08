@@ -1,0 +1,6 @@
+@DMSMicroservice.DocumentManagementService_HostAddress = http://localhost:5156
+
+GET {{DMSMicroservice.DocumentManagementService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

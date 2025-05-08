@@ -1,0 +1,6 @@
+@DMSMicroservice.AuthService_HostAddress = http://localhost:5195
+
+GET {{DMSMicroservice.AuthService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
