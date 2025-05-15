@@ -2,7 +2,7 @@
 {
     public class ApiEndPoints
     {
-        private const string Base = "/api";
+        private const string Base = "/api/user";
         public  class UserApiEndPoints
         {
             public const string ApiBase = Base;

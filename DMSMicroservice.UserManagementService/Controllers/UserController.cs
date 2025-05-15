@@ -10,7 +10,8 @@ using static DMSMicroservice.UserManagementService.ApiEndPoints;
 namespace DMSMicroservice.UserManagementService.Controllers
 {
     [ApiController]
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles = "Admin")]
+
     public class UserController : ControllerBase
     {
         private readonly UserManager<IdentityUser> userManager;

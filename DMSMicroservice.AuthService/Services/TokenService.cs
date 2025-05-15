@@ -28,8 +28,9 @@ namespace DMSMicroservice.AuthService.Services
             {
                 Subject = new ClaimsIdentity(new[]
                 {
-                       new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
-                       new Claim(ClaimTypes.Email, user.Email ?? string.Empty)
+                       new Claim(ClaimTypes.Name, user.UserName!),
+                       new Claim(ClaimTypes.Email, user.Email!),
+                       new Claim(ClaimTypes.Role, user.Role!)
                    }),
                 Expires = DateTime.Now.AddDays(5),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Key"])), SecurityAlgorithms.HmacSha256Signature)

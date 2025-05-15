@@ -35,6 +35,7 @@ namespace DMSMicroservice.AuthService.Data
                     Email = "Admin@jktech.com",
                     UserName = "Admin@jktech.com",
                     EmailConfirmed = true,
+                    Role="Admin"
                 };
 
                 // Create the admin user

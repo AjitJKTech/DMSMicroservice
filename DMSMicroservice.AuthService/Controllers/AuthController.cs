@@ -23,7 +23,6 @@ namespace DMSMicroservice.AuthService.Controllers
         [HttpPost(ApiEndPoints.AuthEndPoints.Login)]
         public async Task<ActionResult<ResponseDto>> Login([FromBody] LoginRequest request)
         {
-
             var user = await _userManager.FindByEmailAsync(request.Email);
             if (user == null)
                 return new ResponseDto
@@ -34,7 +33,6 @@ namespace DMSMicroservice.AuthService.Controllers
                     Token = null!
                 };
 
-
             var passwordCheck = await _userManager.CheckPasswordAsync(user, request.Password);
             if (!passwordCheck)
                 return new ResponseDto
@@ -44,6 +42,11 @@ namespace DMSMicroservice.AuthService.Controllers
                     Error = "Invalid credentials",
                     Token = null!
                 };
+
+            // Convert the list of roles to a single string (e.g., comma-separated)
+            var roles = await _userManager.GetRolesAsync(user);
+            user.Role = string.Join(", ", roles);
+
             return new ResponseDto
             {
                 Email = user.Email!,
@@ -51,7 +54,6 @@ namespace DMSMicroservice.AuthService.Controllers
                 Error = null!,
                 Token = await _tokenService.GenerateToken(user)
             };
-
         }
 
         [HttpPost(ApiEndPoints.AuthEndPoints.Register)]
@@ -73,6 +75,7 @@ namespace DMSMicroservice.AuthService.Controllers
                 CreatedAt = DateTime.UtcNow,
                 EmailConfirmed=true,
                 PhoneNumberConfirmed = true,
+                Role = registerRequest.Role
 
             };
             var result = await _userManager.CreateAsync(user, registerRequest.Password);
